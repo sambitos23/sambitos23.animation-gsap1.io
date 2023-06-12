@@ -8,13 +8,13 @@ var animation = bodymovin.loadAnimation({
   name: 'demo animation'
 })
 
-var animation2 = bodymovin.loadAnimation({
-  container: document.getElementById('animation-container2'),
-  path: 'lottie-files/Analyzing Infographics.json',
+var people_lottie = bodymovin.loadAnimation({
+  container: document.getElementById('people-lottie'),
+  path: 'lottie-files/people.json',
   render: 'svg',
   loop: true,
   autoplay: true,
-  name: 'demo animation'
+  name: 'people animation'
 })
 
 var animation3 = bodymovin.loadAnimation({
@@ -95,14 +95,14 @@ const images = Array.from({ length: frameCount }, (_, index) => {
   return img;
 });
 
-const imageSeq = { frame: 1 };
+const imageSeq = { frame: 0 };
 
 gsap.to(imageSeq, {
   frame: frameCount - 1,
   snap: "frame",
   ease: "none",
   scrollTrigger: {
-    scrub: 0.15,
+    scrub: 0.5,
     trigger: "#hero-animation",
     start: "top top",
     end: "235% top",
@@ -111,7 +111,7 @@ gsap.to(imageSeq, {
   onUpdate: render,
 });
 
-images[1].onload = render;
+images[0].onload = render;
 
 function render() {
   const img = images[imageSeq.frame];
@@ -141,11 +141,4 @@ ScrollTrigger.create({
   scroller: "#main",
   start: "top top",
   end: "235% top",
-});
-
-const scroll = new LocomotiveScroll({
-  el: document.querySelector('#threeD'),
-  smooth: true,
-  tablet : {smooth: true},
-  smartphone : {smooth: true}
 });
